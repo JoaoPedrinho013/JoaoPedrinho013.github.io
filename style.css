@@ -1,0 +1,88 @@
+html {
+    background: linear-gradient(to bottom, black, lightgray);
+    /*Aqui fez a cor ir ate o final da tela do html sem repetir nao precisou usar no repeat*/
+    background-attachment: fixed;
+    color: whitesmoke;
+}
+
+.caixa {
+    background: rgba(0, 0, 0, 0);
+    padding: 5px;
+    width: auto;
+    margin: 0px;
+    display: flex;
+    align-items: center;
+}
+.logo:hover {
+   background-color: rgba(63, 2, 53, 0.288);
+}
+.botoes {
+    display: flex;
+    padding-left: 50px;
+    width: 80vw;
+    justify-content: space-around;
+}
+.botoes a {
+    text-decoration: none;
+    color: whitesmoke;
+    font: 1.5em 'Times New Roman', Times, serif;
+}
+
+.botoes a:hover {
+    background-color: silver;
+    color: black;
+}
+
+.direitos {
+    color: rgba(0, 0, 0, 0.616);
+    text-align: center;
+    font-style: italic;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+}
+
+.icones {
+    margin: 20px 5px;
+    display: inline-flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 30px;
+    width: 1000px;
+}
+
+.icones i {
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    text-decoration: none;
+    color: black;
+    margin: 1px;
+
+
+}
+
+.contato {
+    position: absolute;
+    bottom: 150px;
+    color: black;
+}
+
+.introducao {
+    display: flex;
+    justify-content: center;
+    color: whitesmoke;
+    font-size: 3em;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+.sobre {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font: 1.3em 'Times New Roman', Times, serif;
+    color: whitesmoke;
+
+}

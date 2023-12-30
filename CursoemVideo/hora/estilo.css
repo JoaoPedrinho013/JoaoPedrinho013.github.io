@@ -1,0 +1,33 @@
+body {
+    background: lightsteelblue;
+    font: normal 15pt Times;
+}
+header {
+    color: white;
+    text-align: center;
+
+}
+section {
+    background: white;
+    color: black;
+    border-radius: 10px;
+    padding: 15px;
+    width: 300px;
+    margin: auto;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.432);
+}
+footer {
+    color: black;
+    text-align: center;
+    font-style: italic;
+}
+h1 {
+    color: black;
+}
+#mensagem {
+    color: black;
+}
+div {
+    text-align: center;
+    padding: 10px;
+}
