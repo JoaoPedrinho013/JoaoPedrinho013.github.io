@@ -1,9 +1,76 @@
-<h1 class="titulo">&#8669; Email para Contato</h1>
+<div class="fcontato">
+    <h1 class="titulo">&#8669; Email para Contato</h1>
+    <form action="https://formsubmit.co/ajax/joaopedrodevjs.gmail.com" method="post">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome" required>
+
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" required>
+
+        <label for="mensagem">Mensagem</label>
+        <textarea name="mensagem" id="mensagem" required></textarea>
+        <button type="submit">Enviar</button>
+    </form>
+</div>
 
 
 <style>
+    .fcontato {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        max-width: 500px;
+        text-decoration: none;
+        color: rgb(52, 245, 52);
+        font: 1.3em 'Times New Roman', Times, serif;
+
+
+    }
+
+    .fcontato label,
+    .fcontato input,
+    .fcontato textarea,
+    .fcontato button {
+        width: 100%;
+    }
+
     .titulo {
-        color: whitesmoke;
+        color: rgb(52, 245, 52);
         font: 1.8em 'Times New Roman', Times, serif;
+    }
+
+    button {
+        color: rgb(52, 245, 52);
+        font: 1.3em 'Times New Roman', Times, serif;
+        background-color: rgba(0, 0, 0, 0.205);
+    }
+
+    input,
+    textarea,
+    button {
+        font: inherit;
+        padding: 1.25rem;
+        font-weight: 700;
+    }
+
+    input,
+    textarea {
+        margin-bottom: 1rem;
+        color: rgb(52, 245, 52);
+        background-color:rgba(0, 0, 0, 0.205);
+        border: 0.125rem solid transparent;
+        border-radius: 1.125rem;
+        transition: border-color 0.3s;
+        box-shadow: 0.3s;
+
+    }
+    input:hover,
+    input:focus,
+    textarea:hover,
+    textarea:focus {
+        outline: none;
+        border-color: rgb(52, 245, 52);
+        box-shadow: 0 0 0 0.3125rem rgba(0, 0, 0, 0);
     }
 </style>
