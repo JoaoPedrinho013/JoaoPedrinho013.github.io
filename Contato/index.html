@@ -1,15 +1,21 @@
 <div class="fcontato">
-    <h1 class="titulo">&#8669; Email para Contato &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong style="color: red;">//Não Funciona ainda!</strong></h1>
-    <form action="https://formsubmit.co/ajax/joaopedrodevjs.gmail.com" method="post">
-        <label for="nome">Nome</label>
-        <input type="text" name="nome" id="nome" required>
 
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" required>
+    <h1 class="titulo">&#8669; Email para Contato</h1>
+    <h3 style="color: red; font-size: 30px;">NÃO FUNCIONA!!! NÃO ENVIE EMAIL POR AQUI!</h3>
+
+    <form action="https://formsubmit.co/ajax/joaopedrodevjs.gmail.com" method="post" data-form>
+
+
+        <label for="nome" class="nomeEmail">Nome</label>
+        <input type="text" name="nome" id="nome" class="resposta" required>
+
+        <label for="email" class="nomeEmail">Email</label>
+        <input type="email" name="email" id="email" class="resposta" required>
 
         <label for="mensagem">Mensagem</label>
-        <textarea name="mensagem" id="mensagem" required></textarea>
-        <button type="submit">Enviar</button>
+        <textarea name="mensagem" id="mensagem" class="msg" required></textarea>
+        <button type="button" class="botaoEnviar" data-button>Enviar</button>
+
     </form>
 </div>
 
@@ -28,10 +34,10 @@
 
     }
 
-    .fcontato label,
-    .fcontato input,
-    .fcontato textarea,
-    .fcontato button {
+    .fcontato .nomeEmail,
+    .fcontato .resposta,
+    .fcontato .msg,
+    .fcontato .botaoEnviar {
         width: 100%;
     }
 
@@ -40,37 +46,125 @@
         font: 1.8em 'Times New Roman', Times, serif;
     }
 
-    button {
+    .botaoEnviar {
         color: rgb(52, 245, 52);
         font: 1.3em 'Times New Roman', Times, serif;
-        background-color: rgba(0, 0, 0, 0.205);
+        background-color: rgba(0, 0, 0, 0.200);
+        margin-left: 1.1rem;
+        border: none;
+        border-radius: 99px;
+        cursor: pointer;
+        transition: 0.3s;
     }
 
-    input,
-    textarea,
-    button {
+    .botaoEnviar:hover,
+    .botaoEnviar:focus {
+        outline: none;
+        background-color: rgba(0, 0, 0, 0.250);
+    }
+
+    .botaoEnviar:disabled {
+        cursor: not-allowed;
+        background-color: red;
+    }
+
+    .resposta,
+    .msg,
+    .botaoEnviar {
         font: inherit;
         padding: 1.25rem;
         font-weight: 700;
     }
 
-    input,
-    textarea {
+    .resposta,
+    .msg {
         margin-bottom: 1rem;
         color: rgb(52, 245, 52);
-        background-color:rgba(0, 0, 0, 0.205);
+        background-color: rgba(0, 0, 0, 0.205);
         border: 0.125rem solid transparent;
         border-radius: 1.125rem;
         transition: border-color 0.3s;
         box-shadow: 0.3s;
 
     }
-    input:hover,
-    input:focus,
-    textarea:hover,
-    textarea:focus {
+
+    .resposta:hover,
+    .resposta:focus,
+    .msg:hover,
+    .msg:focus {
         outline: none;
         border-color: rgb(52, 245, 52);
         box-shadow: 0 0 0 0.3125rem rgba(0, 0, 0, 0);
     }
+
+    .msg {
+        min-height: 11rem;
+        resize: none;
+    }
 </style>
+<script>
+    class FormSubmit {
+        constructor(configuracoes) {
+            this.configuracoes = configuracoes
+            this.form = document.querySelector(configuracoes.form)
+            this.formButton = document.querySelector(configuracoes.button)
+            if (this.form) {
+                this.url = this.form.getAttribute('action')
+            }
+            this.sendForm = this.sendForm.bind(this)
+        }
+        displaySucess() {
+            this.form.innerHTML = this.configuracoes.sucess
+        }
+        displayError() {
+            this.form.innerHTML = this.configuracoes.console.error
+        }
+
+        getFormObject() {
+            const FormObject = {}
+            const fields = this.form.querySelectorAll("[name]")
+            fields.forEach((field) => {
+                formObject[field.getAttribute("name")] = field.value
+            })
+            return formObject
+        }
+
+        onSubMission(event) {
+            event.preventDefault()
+            event.target.disabled = true
+            event.target.innerText = "Enviando..."
+        }
+
+        async sendForm(event) {
+            try {
+                this.onSubMission(event)
+                await fetch(this.url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json",
+                    },
+                    body: JSON.stringify(this.getFormObject()),
+                })
+                this.displaySucess()
+            } catch (error) {
+                this.displayError()
+                throw new Error(error)
+            }
+        }
+        iniciar() {
+            if (this.form)  this.formButton.addEventListener("click", (event) => this.sendForm(event))
+           
+            return this
+        }
+    }
+
+    const formSubmit = new FormSubmit({
+        form: "[data-form]",
+        button: "[data-button]",
+        sucess: "<h1 class='sucess'>Mensagem enviada com Sucesso </h1>",
+        error: "<h1 class='error'>Não foi possivel enviar sua mensagem. </h1>"
+
+    })
+    formSubmit.iniciar()
+</script>
